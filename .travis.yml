@@ -30,3 +30,8 @@ notifications:
     recipients:
     - archetiz@outlook.com
     on_failure: always
+
+addons:
+  apt:
+    packages:
+      ant
