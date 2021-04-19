@@ -3,7 +3,7 @@ android:
   components:
     - build-tools-29.0.2
     - android-29
-    - android-21
+    - android-29
     - add-on
     - extra
     - platform-tools
@@ -12,7 +12,7 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-29
-    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-29
 
 before_install:
   - yes | sdkmanager "platforms;android-29"
@@ -44,7 +44,7 @@ env:
 sudo: required
 
 before_script:
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a -s "768x1280"
+  - echo no | android create avd --force -n test -t android-29 --abi armeabi-v7a -s "768x1280"
   - emulator -avd test -no-audio -no-window &
   - adb wait-for-device
   - adb shell input keyevent 82 &
