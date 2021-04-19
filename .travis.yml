@@ -34,4 +34,4 @@ notifications:
 addons:
   apt:
     packages:
-      ant
+      gradle
