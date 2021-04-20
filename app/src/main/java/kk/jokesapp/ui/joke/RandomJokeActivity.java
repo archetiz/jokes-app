@@ -16,7 +16,7 @@ import kk.jokesapp.R;
 public class RandomJokeActivity extends AppCompatActivity implements RandomJokeScreen {
 
     @Inject
-    private RandomJokePresenter randomJokePresenter;
+    RandomJokePresenter randomJokePresenter;
 
     private TextView tvRandomJoke;
 

@@ -15,7 +15,7 @@ import kk.jokesapp.R;
 public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen {
 
     @Inject
-    private NewJokePresenter newJokePresenter;
+    NewJokePresenter newJokePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

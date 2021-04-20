@@ -17,7 +17,7 @@ import kk.jokesapp.model.Joke;
 public class CollectionsActivity extends AppCompatActivity implements CollectionsScreen {
 
     @Inject
-    private CollectionsPresenter collectionsPresenter;
+    CollectionsPresenter collectionsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
