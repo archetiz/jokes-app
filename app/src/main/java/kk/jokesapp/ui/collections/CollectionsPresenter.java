@@ -1,10 +1,17 @@
 package kk.jokesapp.ui.collections;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import kk.jokesapp.interactor.CollectionsInteractor;
+import kk.jokesapp.model.Joke;
 import kk.jokesapp.ui.Presenter;
 
 public class CollectionsPresenter extends Presenter<CollectionsScreen> {
+
+    @Inject
+    CollectionsInteractor collectionsInteractor;
 
     @Inject
     public CollectionsPresenter() {
@@ -20,17 +27,22 @@ public class CollectionsPresenter extends Presenter<CollectionsScreen> {
         super.detachScreen();
     }
 
+    private void refreshList() {
+        List<Joke> jokes = collectionsInteractor.getJokes();
+        screen.showCollectionsList(jokes);
+    }
+
     public void listCollections() {
-        //TODO
+        refreshList();
     }
 
     public void removeFromCollection(int id) {
-        //TODO
-        //...
-        //showCollectionsList(...)
+        collectionsInteractor.removeJoke(id);
+        refreshList();
     }
 
     public void showJokeDetails(int id) {
-        //TODO
+        Joke joke = collectionsInteractor.getJoke(id);
+        screen.showJokeDetails(joke);
     }
 }

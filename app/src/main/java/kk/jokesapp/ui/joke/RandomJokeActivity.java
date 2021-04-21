@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import kk.jokesapp.R;
+import kk.jokesapp.model.Joke;
 
 @AndroidEntryPoint
 public class RandomJokeActivity extends AppCompatActivity implements RandomJokeScreen {
@@ -34,14 +35,13 @@ public class RandomJokeActivity extends AppCompatActivity implements RandomJokeS
                 randomJokePresenter.saveCurrentJoke();
             }
         });
-
-        randomJokePresenter.showRandomJoke();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         randomJokePresenter.attachScreen(this);
+        randomJokePresenter.showRandomJoke();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class RandomJokeActivity extends AppCompatActivity implements RandomJokeS
     }
 
     @Override
-    public void showRandomJoke(String setup, String punchline) {
+    public void showRandomJoke(Joke joke) {
         //TODO
     }
 

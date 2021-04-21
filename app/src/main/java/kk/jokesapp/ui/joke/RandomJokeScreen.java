@@ -1,6 +1,8 @@
 package kk.jokesapp.ui.joke;
 
+import kk.jokesapp.model.Joke;
+
 public interface RandomJokeScreen {
-    void showRandomJoke(String setup, String punchline);
+    void showRandomJoke(Joke joke);
     void showSaveResult(Boolean success);
 }

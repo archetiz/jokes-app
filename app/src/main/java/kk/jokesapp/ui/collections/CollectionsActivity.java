@@ -23,14 +23,13 @@ public class CollectionsActivity extends AppCompatActivity implements Collection
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collections);
-
-        collectionsPresenter.listCollections();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         collectionsPresenter.attachScreen(this);
+        collectionsPresenter.listCollections();
     }
 
     @Override

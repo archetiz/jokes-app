@@ -2,9 +2,14 @@ package kk.jokesapp.ui.add;
 
 import javax.inject.Inject;
 
+import kk.jokesapp.interactor.CollectionsInteractor;
+import kk.jokesapp.model.Joke;
 import kk.jokesapp.ui.Presenter;
 
 public class NewJokePresenter extends Presenter<NewJokeScreen> {
+
+    @Inject
+    CollectionsInteractor collectionsInteractor;
 
     @Inject
     public NewJokePresenter() {
@@ -21,6 +26,8 @@ public class NewJokePresenter extends Presenter<NewJokeScreen> {
     }
 
     public void saveNewJoke(String type, String setup, String punchline) {
-        //TODO
+        Joke dummyJoke = new Joke(0, "dummy", "Dummy setup", "Dummy punchline");    //Temporarily
+        collectionsInteractor.addJoke(dummyJoke);
+        screen.showSaveResult(true, null);
     }
 }

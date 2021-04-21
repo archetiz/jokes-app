@@ -29,4 +29,14 @@ public class Joke {
     public void setPunchline(String punchline) {
         this.punchline = punchline;
     }
+
+    public Joke() {
+    }
+
+    public Joke(int id, String type, String setup, String punchline) {
+        this.id = id;
+        this.type = type;
+        this.setup = setup;
+        this.punchline = punchline;
+    }
 }
