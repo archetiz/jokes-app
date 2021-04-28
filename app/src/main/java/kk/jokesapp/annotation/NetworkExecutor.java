@@ -3,5 +3,5 @@ package kk.jokesapp.annotation;
 import javax.inject.Qualifier;
 
 @Qualifier
-public @interface Network {
+public @interface NetworkExecutor {
 }

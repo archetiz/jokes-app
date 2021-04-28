@@ -1,4 +1,4 @@
-package kk.jokesapp.interactor.event;
+package kk.jokesapp.event;
 
 import kk.jokesapp.model.Joke;
 
