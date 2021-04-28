@@ -6,7 +6,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
-import kk.jokesapp.interactor.event.GetRandomJokeEvent;
+import kk.jokesapp.event.GetRandomJokeEvent;
 import kk.jokesapp.model.Joke;
 import kk.jokesapp.model.JokeResult;
 import kk.jokesapp.network.JokesApi;

@@ -8,11 +8,11 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
+import kk.jokesapp.annotation.NetworkExecutor;
 import kk.jokesapp.interactor.CollectionsInteractor;
 import kk.jokesapp.interactor.JokeInteractor;
-import kk.jokesapp.interactor.event.GetRandomJokeEvent;
+import kk.jokesapp.event.GetRandomJokeEvent;
 import kk.jokesapp.model.Joke;
-import kk.jokesapp.annotation.Network;
 import kk.jokesapp.ui.Presenter;
 
 public class RandomJokePresenter extends Presenter<RandomJokeScreen> {
@@ -25,7 +25,7 @@ public class RandomJokePresenter extends Presenter<RandomJokeScreen> {
     @Inject
     JokeInteractor jokeInteractor;
 
-    @Network
+    @NetworkExecutor
     @Inject
     Executor networkExecutor;
 

@@ -6,6 +6,10 @@ public class Joke {
     private String setup;
     private String punchline;
 
+    public int getId() {
+        return id;
+    }
+
     public String getType() {
         return type;
     }
