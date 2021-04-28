@@ -1,0 +1,40 @@
+swagger: '2.0'
+info:
+  description: >-
+    API to get random jokes from a collection.
+  version: 1.0.0
+  title: Jokes API
+host: official-joke-api.appspot.com
+schemes:
+  - https
+  - http
+paths:
+  /random_joke:
+    get:
+      summary: Get a random joke.
+      description: Returns a randomly selected joke.
+      operationId: random_joke
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/Joke'
+definitions:
+  Joke:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      type:
+        type: string
+      setup:
+        type: string
+      punchline:
+        type: string
+externalDocs:
+  description: GitHub page
+  url: 'https://github.com/15Dkatz/official_joke_api'
+  
