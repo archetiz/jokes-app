@@ -11,5 +11,5 @@ public interface JokesApi {
    * @return Call<JokeResult>;
    */
   @GET("random_joke")
-  Call<JokeResult> randomJoke();
+  Call<JokeResult> getRandomJoke();
 }

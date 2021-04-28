@@ -52,7 +52,7 @@ public class RandomJokeActivity extends AppCompatActivity implements RandomJokeS
 
     @Override
     public void showRandomJoke(Joke joke) {
-        //TODO
+        tvRandomJoke.setText(joke.getSetup());
     }
 
     @Override
