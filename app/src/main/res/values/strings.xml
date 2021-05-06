@@ -5,4 +5,5 @@
     <string name="save_joke_to_collections">Vicc mentése a gyűjteménybe</string>
     <string name="loading_joke">Vicc betöltése...</string>
     <string name="succesful_save">Sikeres mentés.</string>
+    <string name="add_new_joke">Új vicc felvétele a gyűjteménybe</string>
 </resources>

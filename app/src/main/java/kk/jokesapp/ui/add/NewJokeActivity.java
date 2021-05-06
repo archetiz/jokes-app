@@ -1,6 +1,9 @@
 package kk.jokesapp.ui.add;
 
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +24,14 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_joke);
+
+        Toolbar toolbar = findViewById(R.id.addToolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
