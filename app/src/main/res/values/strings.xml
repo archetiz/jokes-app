@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">JokesApp</string>
+    <string name="random_joke">Random vicc</string>
+    <string name="collections">Gyűjtemény</string>
+    <string name="save_joke_to_collections">Vicc mentése a gyűjteménybe</string>
+    <string name="loading_joke">Vicc betöltése...</string>
+    <string name="succesful_save">Sikeres mentés.</string>
 </resources>

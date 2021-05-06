@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -19,14 +21,19 @@ public class RandomJokeActivity extends AppCompatActivity implements RandomJokeS
     @Inject
     RandomJokePresenter randomJokePresenter;
 
-    private TextView tvRandomJoke;
+    private TextView tvRandomJokeSetup;
+    private TextView tvRandomJokePunchline;
+    private View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_joke);
 
-        tvRandomJoke = findViewById(R.id.tvRandomJoke);
+        rootView = findViewById(android.R.id.content);
+
+        tvRandomJokeSetup = findViewById(R.id.tvRandomJokeSetup);
+        tvRandomJokePunchline = findViewById(R.id.tvRandomJokePunchline);
 
         Button saveJoke = findViewById(R.id.bSaveJoke);
         saveJoke.setOnClickListener(new View.OnClickListener() {
@@ -52,11 +59,14 @@ public class RandomJokeActivity extends AppCompatActivity implements RandomJokeS
 
     @Override
     public void showRandomJoke(Joke joke) {
-        tvRandomJoke.setText(joke.getSetup());
+        tvRandomJokeSetup.setText(joke.getSetup());
+        tvRandomJokePunchline.setText(joke.getPunchline());
     }
 
     @Override
     public void showSaveResult(Boolean success) {
-        //TODO
+        Snackbar.make(rootView, R.string.succesful_save, Snackbar.LENGTH_LONG)
+                .setBackgroundTint(getResources().getColor(R.color.success))
+                .show();
     }
 }
