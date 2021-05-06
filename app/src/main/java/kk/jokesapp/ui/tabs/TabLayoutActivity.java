@@ -1,6 +1,7 @@
 package kk.jokesapp.ui.tabs;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ public class TabLayoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_layout);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
+        TextView tvTitle = findViewById(R.id.tvTitle);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -30,9 +32,11 @@ public class TabLayoutActivity extends AppCompatActivity {
                     default:
                     case 0:
                         contentFragment = new RandomJokeFragment();
+                        tvTitle.setText(getResources().getText(R.string.random_joke));
                         break;
                     case 1:
                         contentFragment = new CollectionsFragment();
+                        tvTitle.setText(getResources().getText(R.string.collections));
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
