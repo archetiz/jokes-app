@@ -12,13 +12,14 @@
         android:supportsRtl="true"
         android:name=".JokesApplication"
         android:theme="@style/Theme.JokesApp">
-        <activity android:name=".ui.joke.RandomJokeActivity">
+        <activity android:name=".ui.tabs.TabLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.add.NewJokeActivity" />
     </application>
 
 </manifest>

@@ -1,6 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <TextView
+            android:id="@+id/tvAddTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_new_joke"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="20sp"
+            android:translationX="-16dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tvNewJokeCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joke_category"
+        app:layout_constraintTop_toBottomOf="@+id/addToolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:labelFor="@+id/etNewJokeCategory"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="64dp" />
+    <EditText
+        android:id="@+id/etNewJokeCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:background="@color/design_default_color_surface"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewJokeCategory"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/tvNewJokeSetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joke_setup"
+        app:layout_constraintTop_toBottomOf="@+id/etNewJokeCategory"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:labelFor="@+id/etNewJokeSetup"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="42dp" />
+    <EditText
+        android:id="@+id/etNewJokeSetup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
+        android:inputType="textMultiLine"
+        android:gravity="start|top"
+        android:padding="8dp"
+        android:background="@color/design_default_color_surface"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewJokeSetup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/tvNewJokePunchline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joke_punchline"
+        app:layout_constraintTop_toBottomOf="@+id/etNewJokeSetup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:labelFor="@+id/etNewJokePunchline"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="42dp" />
+    <EditText
+        android:id="@+id/etNewJokePunchline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="96dp"
+        android:inputType="textMultiLine"
+        android:gravity="start|top"
+        android:padding="8dp"
+        android:background="@color/design_default_color_surface"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewJokePunchline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/bAddCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/bAddSave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="24dp"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="24dp"
+        android:backgroundTint="@color/cancel"
+        android:text="@string/cancel"
+        />
+
+    <Button
+        android:id="@+id/bAddSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/bAddCancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="12dp"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="24dp"
+        android:backgroundTint="@color/success"
+        android:text="@string/save"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
