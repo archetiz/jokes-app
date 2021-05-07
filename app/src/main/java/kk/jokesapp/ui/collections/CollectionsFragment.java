@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -20,10 +23,13 @@ import kk.jokesapp.model.Joke;
 import kk.jokesapp.ui.add.NewJokeActivity;
 
 @AndroidEntryPoint
-public class CollectionsFragment extends Fragment implements CollectionsScreen {
+public class CollectionsFragment extends Fragment implements CollectionsScreen, CollectionsListAdapter.ItemClickListener {
 
     @Inject
     CollectionsPresenter collectionsPresenter;
+
+    CollectionsListAdapter collectionsListAdapter;
+    RecyclerView rvCollections;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,12 @@ public class CollectionsFragment extends Fragment implements CollectionsScreen {
                 startActivity(intent);
             }
         });
+
+        rvCollections = view.findViewById(R.id.rvCollections);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rvCollections.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCollections.getContext(), layoutManager.getOrientation());
+        rvCollections.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -65,11 +77,23 @@ public class CollectionsFragment extends Fragment implements CollectionsScreen {
 
     @Override
     public void showCollectionsList(List<Joke> jokes) {
-        //TODO
+        if(collectionsListAdapter == null) {
+            collectionsListAdapter = new CollectionsListAdapter(getContext(), jokes);
+            rvCollections.setAdapter(collectionsListAdapter);
+            collectionsListAdapter.setOnClickListener(this);
+        }
+        else {
+            collectionsListAdapter.updateItems(jokes);
+        }
     }
 
     @Override
     public void showJokeDetails(Joke joke) {
         //TODO
+    }
+
+    @Override
+    public void onItemDeleteClick(int id) {
+        collectionsPresenter.removeFromCollection(id);
     }
 }

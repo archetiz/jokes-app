@@ -16,6 +16,18 @@
         app:srcCompat="@android:drawable/ic_input_add"
         app:maxImageSize="32dp"
         app:backgroundTint="@color/design_default_color_primary"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:focusable="true"
+        android:contentDescription="@string/add_new_joke" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCollections"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

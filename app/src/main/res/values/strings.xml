@@ -18,4 +18,5 @@
     <string name="error_joke_category_empty">A vicc kategóriája nem lehet üres!</string>
     <string name="error_joke_setup_empty">A vicc előkészítő szakasza nem lehet üres!</string>
     <string name="error_joke_punchline_empty">A vicc poénja nem lehet üres!</string>
+    <string name="delete">Törlés</string>
 </resources>
