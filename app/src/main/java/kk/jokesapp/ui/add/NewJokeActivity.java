@@ -2,6 +2,7 @@ package kk.jokesapp.ui.add;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,9 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
     private EditText etNewJokeCategory;
     private EditText etNewJokeSetup;
     private EditText etNewJokePunchline;
+    private Button bCancel;
+    private Button bSave;
+    private Toolbar toolbar;
 
     private View rootView;
 
@@ -43,7 +47,7 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
         etNewJokeSetup = findViewById(R.id.etNewJokeSetup);
         etNewJokePunchline = findViewById(R.id.etNewJokePunchline);
 
-        Toolbar toolbar = findViewById(R.id.addToolbar);
+        toolbar = findViewById(R.id.addToolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +55,7 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
             }
         });
 
-        Button bCancel = findViewById(R.id.bAddCancel);
+        bCancel = findViewById(R.id.bAddCancel);
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +63,7 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
             }
         });
 
-        Button bSave = findViewById(R.id.bAddSave);
+        bSave = findViewById(R.id.bAddSave);
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,10 +114,19 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
     @Override
     public void showSaveResult(Boolean success, List<Integer> errors) {
             if(success) {
-                finish();   //TODO
                 Snackbar.make(rootView, R.string.succesful_save, Snackbar.LENGTH_LONG)
                         .setBackgroundTint(getResources().getColor(R.color.success))
                         .show();
+                bCancel.setVisibility(View.INVISIBLE);
+                bSave.setVisibility(View.INVISIBLE);
+                toolbar.setNavigationOnClickListener(null);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 1000);
             }
             else {
                 String errorText = "";
