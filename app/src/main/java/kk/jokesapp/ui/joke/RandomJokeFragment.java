@@ -26,6 +26,8 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
     private TextView tvRandomJokeSetup;
     private TextView tvRandomJokePunchline;
 
+    private Button bSaveJoke;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +46,8 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
         tvRandomJokeSetup = view.findViewById(R.id.tvRandomJokeSetup);
         tvRandomJokePunchline = view.findViewById(R.id.tvRandomJokePunchline);
 
-        Button saveJoke = view.findViewById(R.id.bSaveJoke);
-        saveJoke.setOnClickListener(new View.OnClickListener() {
+        bSaveJoke = view.findViewById(R.id.bSaveJoke);
+        bSaveJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 randomJokePresenter.saveCurrentJoke();
@@ -57,6 +59,7 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
     public void onStart() {
         super.onStart();
         randomJokePresenter.attachScreen(this);
+        bSaveJoke.setVisibility(View.INVISIBLE);
         randomJokePresenter.showRandomJoke();
     }
 
@@ -70,15 +73,24 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
     public void showRandomJoke(Joke joke) {
         tvRandomJokeSetup.setText(joke.getSetup());
         tvRandomJokePunchline.setText(joke.getPunchline());
+        bSaveJoke.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showSaveResult(Boolean success) {
         View view = getView();
         if(view != null) {
-            Snackbar.make(view, R.string.succesful_save, Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(getActivity().getResources().getColor(R.color.success))
-                    .show();
+            if(success) {
+                bSaveJoke.setVisibility(View.INVISIBLE);
+                Snackbar.make(view, R.string.succesful_save, Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getActivity().getResources().getColor(R.color.success))
+                        .show();
+            }
+            else {
+                Snackbar.make(view, R.string.unsuccesful_save, Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getActivity().getResources().getColor(R.color.error))
+                        .show();
+            }
         }
     }
 }
