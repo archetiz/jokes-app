@@ -88,11 +88,6 @@ public class CollectionsFragment extends Fragment implements CollectionsScreen, 
     }
 
     @Override
-    public void showJokeDetails(Joke joke) {
-        //TODO
-    }
-
-    @Override
     public void onItemDeleteClick(int id) {
         collectionsPresenter.removeFromCollection(id);
     }

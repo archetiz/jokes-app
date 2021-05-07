@@ -13,9 +13,6 @@ public interface JokeDao {
     @Query("SELECT * FROM jokes")
     List<JokeEntity> getJokes();
 
-    @Query("SELECT * FROM jokes WHERE jokeId = :id")
-    JokeEntity getJoke(int id);
-
     @Insert
     void insertJoke(JokeEntity joke);
 

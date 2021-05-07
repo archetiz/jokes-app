@@ -9,7 +9,6 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 
 import kk.jokesapp.annotation.DatabaseExecutor;
-import kk.jokesapp.event.GetJokeEvent;
 import kk.jokesapp.event.GetJokesEvent;
 import kk.jokesapp.event.JokeDeletedEvent;
 import kk.jokesapp.interactor.CollectionsInteractor;
@@ -62,23 +61,9 @@ public class CollectionsPresenter extends Presenter<CollectionsScreen> {
         });
     }
 
-    public void showJokeDetails(int id) {
-        databaseExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                collectionsInteractor.getJoke(id);
-            }
-        });
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(final GetJokesEvent event) {
         screen.showCollectionsList(event.getJokes());
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventMainThread(final GetJokeEvent event) {
-        screen.showJokeDetails(event.getJoke());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
