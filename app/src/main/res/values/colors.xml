@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="success">#FF008B3E</color>
+    <color name="error">#FFAA0000</color>
+    <color name="background">#FFEFEFEF</color>
 </resources>
