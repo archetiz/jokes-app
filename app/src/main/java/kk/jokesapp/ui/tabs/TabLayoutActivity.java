@@ -29,14 +29,14 @@ public class TabLayoutActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment contentFragment;
                 switch (tab.getPosition()) {
+                    case 1:
+                        contentFragment = new CollectionsFragment();
+                        tvTitle.setText(getResources().getText(R.string.my_collections));
+                        break;
                     default:
                     case 0:
                         contentFragment = new RandomJokeFragment();
                         tvTitle.setText(getResources().getText(R.string.random_joke));
-                        break;
-                    case 1:
-                        contentFragment = new CollectionsFragment();
-                        tvTitle.setText(getResources().getText(R.string.collections));
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
