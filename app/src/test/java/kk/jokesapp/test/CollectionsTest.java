@@ -33,9 +33,6 @@ import static org.robolectric.Shadows.shadowOf;
 @Config(application = HiltTestApplication.class)
 public class CollectionsTest extends TestBase {
 
-    private static final int NUMBER_OF_TESTS_TO_RUN = 2;
-    private int testsRan = 0;
-
     @Inject
     CollectionsPresenter collectionsPresenter;
 
@@ -91,9 +88,6 @@ public class CollectionsTest extends TestBase {
     @After
     public void finishTest() {
         collectionsPresenter.detachScreen();
-        testsRan++;
-        if(testsRan == NUMBER_OF_TESTS_TO_RUN) {
-            testDatabase.close();
-        }
+        testDatabase.close();
     }
 }
