@@ -1,7 +1,5 @@
 package kk.jokesapp.test;
 
-import android.os.Looper;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +12,6 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
-import kk.jokesapp.database.AppDatabase;
 import kk.jokesapp.model.Joke;
 import kk.jokesapp.ui.joke.RandomJokePresenter;
 import kk.jokesapp.ui.joke.RandomJokeScreen;
@@ -22,7 +19,6 @@ import kk.jokesapp.ui.joke.RandomJokeScreen;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.robolectric.Shadows.shadowOf;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
@@ -33,9 +29,6 @@ public class RandomJokeTest extends TestBase {
     RandomJokePresenter randomJokePresenter;
 
     RandomJokeScreen randomJokeScreen;
-
-    @Inject
-    AppDatabase testDatabase;
 
     @Before
     public void initTest() {
@@ -48,7 +41,7 @@ public class RandomJokeTest extends TestBase {
     public void testShowRandomJoke() {
         randomJokePresenter.showRandomJoke();
 
-        shadowOf(Looper.getMainLooper()).idle();
+        waitForTasks();
 
         ArgumentCaptor<Joke> jokeCaptor = ArgumentCaptor.forClass(Joke.class);
         verify(randomJokeScreen).showRandomJoke(jokeCaptor.capture());
@@ -66,7 +59,7 @@ public class RandomJokeTest extends TestBase {
         randomJokePresenter.showRandomJoke();
         randomJokePresenter.saveCurrentJoke();
 
-        shadowOf(Looper.getMainLooper()).idle();
+        waitForTasks();
 
         ArgumentCaptor<Boolean> saveResultCaptor = ArgumentCaptor.forClass(Boolean.class);
         verify(randomJokeScreen).showSaveResult(saveResultCaptor.capture());
@@ -77,6 +70,6 @@ public class RandomJokeTest extends TestBase {
     @After
     public void finishTest() {
         randomJokePresenter.detachScreen();
-        testDatabase.close();
+        closeDatabase();
     }
 }
