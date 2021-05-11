@@ -66,6 +66,11 @@ public class CollectionsFragment extends Fragment implements CollectionsScreen, 
     public void onStart() {
         super.onStart();
         collectionsPresenter.attachScreen(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         collectionsPresenter.listCollections();
     }
 
