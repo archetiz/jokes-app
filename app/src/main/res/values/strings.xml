@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">JokesApp</string>
+    <string name="random_joke">Random vicc</string>
+    <string name="collections">Gyűjtemény</string>
+    <string name="my_collections">Viccgyűjteményem</string>
+    <string name="save_joke_to_collections">Vicc mentése a gyűjteménybe</string>
+    <string name="loading_joke">Vicc betöltése...</string>
+    <string name="succesful_save">Sikeres mentés.</string>
+    <string name="add_new_joke">Új vicc felvétele a gyűjteménybe</string>
+    <string name="joke_category">Vicc kategóriája</string>
+    <string name="joke_setup">Vicc előkészítő szakasza</string>
+    <string name="joke_punchline">Vicc poénja</string>
+    <string name="cancel">Mégse</string>
+    <string name="save">Mentés</string>
+    <string name="yes">Igen</string>
+    <string name="confirm_dialog_text">Minden nem mentett módosítás elveszik. Biztosan vissza akar lépni?</string>
+    <string name="confirm">Megerősítés</string>
+    <string name="unsuccesful_save">Sikertelen mentés.</string>
+    <string name="error_joke_category_empty">A vicc kategóriája nem lehet üres!</string>
+    <string name="error_joke_setup_empty">A vicc előkészítő szakasza nem lehet üres!</string>
+    <string name="error_joke_punchline_empty">A vicc poénja nem lehet üres!</string>
+    <string name="delete">Törlés</string>
 </resources>
