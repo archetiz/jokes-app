@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import kk.jokesapp.database.AppDatabase;
 import kk.jokesapp.database.data.JokeEntity;
-import kk.jokesapp.event.GetJokeEvent;
 import kk.jokesapp.event.GetJokesEvent;
 import kk.jokesapp.event.JokeAddedEvent;
 import kk.jokesapp.event.JokeDeletedEvent;
@@ -32,12 +31,6 @@ public class CollectionsInteractor {
            jokes.add(joke);
         }
         GetJokesEvent event = new GetJokesEvent(jokes);
-        EventBus.getDefault().post(event);
-    }
-
-    public void getJoke(int id) {
-        JokeEntity entity = appDatabase.jokeDao().getJoke(id);
-        GetJokeEvent event = new GetJokeEvent(new Joke(entity.getJokeId(), entity.getType(), entity.getSetup(), entity.getPunchline()));
         EventBus.getDefault().post(event);
     }
 

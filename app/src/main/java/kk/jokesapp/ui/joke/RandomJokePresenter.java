@@ -8,7 +8,9 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
+import kk.jokesapp.annotation.DatabaseExecutor;
 import kk.jokesapp.annotation.NetworkExecutor;
+import kk.jokesapp.event.JokeAddedEvent;
 import kk.jokesapp.interactor.CollectionsInteractor;
 import kk.jokesapp.interactor.JokeInteractor;
 import kk.jokesapp.event.GetRandomJokeEvent;
@@ -29,6 +31,10 @@ public class RandomJokePresenter extends Presenter<RandomJokeScreen> {
     @Inject
     Executor networkExecutor;
 
+    @DatabaseExecutor
+    @Inject
+    Executor databaseExecutor;
+
     @Inject
     public RandomJokePresenter() {
     }
@@ -46,8 +52,12 @@ public class RandomJokePresenter extends Presenter<RandomJokeScreen> {
     }
 
     public void saveCurrentJoke() {
-        collectionsInteractor.addJoke(currentJoke);
-        screen.showSaveResult(true);
+        databaseExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                collectionsInteractor.addJoke(currentJoke);
+            }
+        });
     }
 
     public void showRandomJoke() {
@@ -57,7 +67,6 @@ public class RandomJokePresenter extends Presenter<RandomJokeScreen> {
                 jokeInteractor.getRandomJoke();
             }
         });
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -65,6 +74,13 @@ public class RandomJokePresenter extends Presenter<RandomJokeScreen> {
         currentJoke = event.getJoke();
         if(screen != null) {
             screen.showRandomJoke(currentJoke);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final JokeAddedEvent event) {
+        if(screen != null) {
+            screen.showSaveResult(true);
         }
     }
 }
