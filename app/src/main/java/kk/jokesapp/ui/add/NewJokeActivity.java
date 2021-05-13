@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -36,10 +37,14 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
 
     private View rootView;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_joke);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         rootView = findViewById(android.R.id.content);
 
@@ -72,6 +77,12 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
                                                 etNewJokePunchline.getText().toString());
             }
         });
+
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "new_joke");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "joke");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle);
     }
 
     @Override
@@ -114,6 +125,12 @@ public class NewJokeActivity extends AppCompatActivity implements NewJokeScreen 
     @Override
     public void showSaveResult(Boolean success, List<Integer> errors) {
             if(success) {
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "");
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "new_joke");
+                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "joke");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE, bundle);
+
                 Snackbar.make(rootView, R.string.succesful_save, Snackbar.LENGTH_LONG)
                         .setBackgroundTint(getResources().getColor(R.color.success))
                         .show();

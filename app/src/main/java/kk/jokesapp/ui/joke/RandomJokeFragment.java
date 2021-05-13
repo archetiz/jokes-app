@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import javax.inject.Inject;
 
@@ -28,9 +29,13 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
 
     private Button bSaveJoke;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private String jokeIdForAnalytics;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
     }
 
     @Override
@@ -74,6 +79,12 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
         tvRandomJokeSetup.setText(joke.getSetup());
         tvRandomJokePunchline.setText(joke.getPunchline());
         bSaveJoke.setVisibility(View.VISIBLE);
+        Bundle bundle = new Bundle();
+        jokeIdForAnalytics = Integer.toString(joke.getId());
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, jokeIdForAnalytics);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "random_joke");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "joke");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
     }
 
     @Override
@@ -85,6 +96,12 @@ public class RandomJokeFragment extends Fragment implements RandomJokeScreen {
                 Snackbar.make(view, R.string.succesful_save, Snackbar.LENGTH_LONG)
                         .setBackgroundTint(getActivity().getResources().getColor(R.color.success))
                         .show();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, jokeIdForAnalytics);
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "random_joke");
+                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "joke");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle);
             }
             else {
                 Snackbar.make(view, R.string.unsuccesful_save, Snackbar.LENGTH_LONG)

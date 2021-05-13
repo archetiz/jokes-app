@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,9 +33,12 @@ public class CollectionsFragment extends Fragment implements CollectionsScreen, 
     CollectionsListAdapter collectionsListAdapter;
     RecyclerView rvCollections;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
     }
 
     @Override
@@ -90,6 +95,11 @@ public class CollectionsFragment extends Fragment implements CollectionsScreen, 
         else {
             collectionsListAdapter.updateItems(jokes);
         }
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "collection");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "list");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, bundle);
     }
 
     @Override
